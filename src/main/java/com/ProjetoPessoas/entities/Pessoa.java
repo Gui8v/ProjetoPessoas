@@ -3,20 +3,30 @@ package com.ProjetoPessoas.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_pessoa")
 public class Pessoa implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
-	
+		
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		private String nome;
-		private int cpf;
+		private String cpf;
 		private String email;
 		
 		public Pessoa() {
 			
 		}
 
-		public Pessoa(Long id, String nome, int cpf, String email) {
+		public Pessoa(Long id, String nome, String cpf, String email) {
 			super();
 			this.id = id;
 			this.nome = nome;
@@ -40,11 +50,11 @@ public class Pessoa implements Serializable{
 			this.nome = nome;
 		}
 
-		public int getCpf() {
+		public String getCpf() {
 			return cpf;
 		}
 
-		public void setCpf(int cpf) {
+		public void setCpf(String cpf) {
 			this.cpf = cpf;
 		}
 
