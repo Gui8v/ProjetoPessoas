@@ -30,12 +30,13 @@ public class Telefone implements Serializable {
 	public Telefone() {
 
 	}
-	
-	public Telefone(Long id, String descricao, int numero) {
+
+	public Telefone(Long id, String descricao, int numero, Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.numero = numero;
+		this.pessoa = pessoa;
 	}
 
 	public Long getId() {

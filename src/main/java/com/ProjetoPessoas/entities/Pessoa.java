@@ -26,6 +26,7 @@ public class Pessoa implements Serializable {
 	private String cpf;
 	private String email;
 	private Instant dataNascimento;
+	
 
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<>();

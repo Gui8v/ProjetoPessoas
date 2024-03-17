@@ -3,6 +3,8 @@ package com.ProjetoPessoas.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Endereco implements Serializable {
 	private int numero;
 	private String cep;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
@@ -37,8 +40,8 @@ public class Endereco implements Serializable {
 		
 	}
 	
-
-	public Endereco(Long id, String rua, String bairro, String cidade, String estado, String descricao, int numero, String cep) {
+	public Endereco(Long id, String rua, String bairro, String cidade, String estado, String descricao, int numero,
+			String cep, Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.rua = rua;
@@ -48,7 +51,9 @@ public class Endereco implements Serializable {
 		this.descricao = descricao;
 		this.numero = numero;
 		this.cep = cep;
+		this.pessoa = pessoa;
 	}
+
 
 
 	public Long getId() {
