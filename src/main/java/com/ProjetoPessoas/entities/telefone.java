@@ -1,16 +1,21 @@
 package com.ProjetoPessoas.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_telefone")
-public class telefone {
+public class Telefone implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +23,15 @@ public class telefone {
 	private String descricao;
 	private int numero;
 	
-	public telefone() {
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
+	
+	public Telefone() {
 
 	}
 	
-	public telefone(Long id, String descricao, int numero) {
+	public Telefone(Long id, String descricao, int numero) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -63,9 +72,9 @@ public class telefone {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		telefone other = (telefone) obj;
+		Telefone other = (Telefone) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	
 }

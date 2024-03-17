@@ -1,16 +1,21 @@
 package com.ProjetoPessoas.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_endereco")
-public class Endereco {
+public class Endereco implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +27,10 @@ public class Endereco {
 	private String descricao;
 	private int numero;
 	private String cep;
+	
+	@ManyToOne
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
 	
 	
 	public Endereco() {
@@ -114,6 +123,15 @@ public class Endereco {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 

@@ -2,12 +2,15 @@ package com.ProjetoPessoas.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +26,12 @@ public class Pessoa implements Serializable {
 	private String cpf;
 	private String email;
 	private Instant dataNascimento;
+
+	@OneToMany(mappedBy = "pessoa")
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "pessoa")
+	private List<Telefone> telefones = new ArrayList<>();
 
 	public Pessoa() {
 
@@ -40,7 +49,6 @@ public class Pessoa implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -74,6 +82,14 @@ public class Pessoa implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -90,5 +106,4 @@ public class Pessoa implements Serializable {
 		Pessoa other = (Pessoa) obj;
 		return Objects.equals(id, other.id);
 	}
-
 }
