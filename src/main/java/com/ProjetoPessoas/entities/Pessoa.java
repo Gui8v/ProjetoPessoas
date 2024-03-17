@@ -1,6 +1,7 @@
 package com.ProjetoPessoas.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -11,78 +12,83 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_pessoa")
-public class Pessoa implements Serializable{
-	
-		private static final long serialVersionUID = 1L;
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
-		private String nome;
-		private String cpf;
-		private String email;
-		
-		public Pessoa() {
-			
-		}
+public class Pessoa implements Serializable {
 
-		public Pessoa(Long id, String nome, String cpf, String email) {
-			super();
-			this.id = id;
-			this.nome = nome;
-			this.cpf = cpf;
-			this.email = email;
-		}
+	private static final long serialVersionUID = 1L;
 
-		public Long getId() {
-			return id;
-		}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nome;
+	private String cpf;
+	private String email;
+	private Instant dataNascimento;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	public Pessoa() {
 
-		public String getNome() {
-			return nome;
-		}
+	}
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+	public Pessoa(Long id, String nome, String cpf, String email, Instant dataNascimento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+	}
 
-		public String getCpf() {
-			return cpf;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public void setCpf(String cpf) {
-			this.cpf = cpf;
-		}
 
-		public String getEmail() {
-			return email;
-		}
+	public String getNome() {
+		return nome;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-		@Override
-		public int hashCode() {
-			return Objects.hash(id);
-		}
+	public String getCpf() {
+		return cpf;
+	}
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Pessoa other = (Pessoa) obj;
-			return Objects.equals(id, other.id);
-		}
-		
-		
-		
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Instant getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Instant dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(id, other.id);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.ProjetoPessoas.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Pessoa p1 = new Pessoa(null, "jao", "123", "jao@gmail.com");
-		Pessoa p2 = new Pessoa(null, "jao2", "456", "jao2@gmail.com");
+		Pessoa p1 = new Pessoa(null, "jao", "123", "jao@gmail.com", Instant.parse("2019-06-20T19:53:07Z"));
+		Pessoa p2 = new Pessoa(null, "jao2", "456", "jao2@gmail.com", Instant.parse("2019-06-21T19:53:07Z"));
 		
 		pessoaRepository.saveAll(Arrays.asList(p1, p2));
 	}
