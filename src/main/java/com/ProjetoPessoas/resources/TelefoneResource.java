@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ProjetoPessoas.Services.EnderecoService;
 import com.ProjetoPessoas.Services.TelefoneService;
-import com.ProjetoPessoas.entities.Endereco;
 import com.ProjetoPessoas.entities.Telefone;
 
 @RestController
