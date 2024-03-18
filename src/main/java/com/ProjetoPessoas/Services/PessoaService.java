@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ProjetoPessoas.Repositories.PessoaRepository;
+import com.ProjetoPessoas.Services.Exception.ResourceNotFoundException;
 import com.ProjetoPessoas.entities.Pessoa;
 
 @Service
@@ -21,7 +22,7 @@ public class PessoaService {
 	
 	public Pessoa findById(Long id){
 		Optional<Pessoa> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Pessoa insert(Pessoa obj){
