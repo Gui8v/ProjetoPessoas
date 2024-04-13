@@ -1,60 +1,37 @@
-package com.ProjetoPessoas.entities;
+package com.ProjetoPessoas.entities.dto;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.ProjetoPessoas.entities.Endereco;
+import com.ProjetoPessoas.entities.Telefone;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-
-@Entity
-@Table(name = "tb_pessoa")
-public class Pessoa implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PessoaDto {
+	
+	@JsonProperty("id")
 	@JsonInclude(Include.NON_NULL)
 	private Long id;
 	private String nome;
 	private String cpf;
 	private String email;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant dataNascimento;
-	@Transient
-	private String erros;
-	
-	@OneToMany(mappedBy = "pessoa")
+	private Instant dataNascimento;	
+
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "pessoa")
 	private List<Telefone> telefones = new ArrayList<>();
 
-	public Pessoa() {
+	public PessoaDto() {
 
 	}
 
-	public String getErros() {
-		return erros;
-	}
-
-	public void setErros(String erros) {
-		this.erros = erros;
-	}
-
-	public Pessoa(Long id, String nome, String cpf, String email, Instant dataNascimento) {
+	public PessoaDto(Long id, String nome, String cpf, String email, Instant dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -127,7 +104,9 @@ public class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		PessoaDto other = (PessoaDto) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 }

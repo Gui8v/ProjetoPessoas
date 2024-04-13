@@ -1,8 +1,20 @@
 package com.ProjetoPessoas.resources.exceptions;
 
 import java.io.Serializable;
+
 import java.time.Instant;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class StandardError implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -10,71 +22,8 @@ public class StandardError implements Serializable {
 	private Instant timestamp;
 	private Integer status;
 	private String error;
-	private String massage;
+	private String message;
 	private String path;
 	private String ip;
-	
-	public StandardError() {
-		
-	}
 
-	public StandardError(Instant timestamp, Integer status, String error, String massage, String path, String ip) {
-		super();
-		this.timestamp = timestamp;
-		this.status = status;
-		this.error = error;
-		this.massage = massage;
-		this.path = path;
-		this.ip = ip;
-	}
-
-	public Instant getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Instant timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
-	}
-
-	public String getMassage() {
-		return massage;
-	}
-
-	public void setMassage(String massage) {
-		this.massage = massage;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-	
-	
 }
